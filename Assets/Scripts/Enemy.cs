@@ -12,6 +12,12 @@ namespace Archer
         // Cuántas vidas tiene el enemigo
         [SerializeField]
         private int hitPoints;
+        
+        private float timerAfterKill = 3.0f;
+        private float timeOfKill;
+
+        [SerializeField]
+        Light temporalLight;
 
         private Animator animator;
 
@@ -25,12 +31,19 @@ namespace Archer
         // Método que se llamará cuando el enemigo reciba un impacto
         public void Hit()
         {
-         
+            hitPoints--;
+            if (hitPoints == 0)
+            {
+                Die();
+            }
         }
 
         private void Die()
         {
-           
+            Destroy(this.gameObject);
+            
+            
+
         }
     }
 
