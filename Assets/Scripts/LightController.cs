@@ -18,4 +18,13 @@ public class LightController : MonoBehaviour
     {
         
     }
+
+    public void offLight()
+    {
+        this.light.enabled = false;
+    }
+    public void onLight()
+    {
+        this.light.enabled = true;
+    }
 }

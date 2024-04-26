@@ -17,7 +17,7 @@ namespace Archer
         private float timeOfKill;
 
         [SerializeField]
-        Light temporalLight;
+        GameObject temporalLight;
 
         private Animator animator;
 
@@ -40,10 +40,20 @@ namespace Archer
 
         private void Die()
         {
-            Destroy(this.gameObject);
+            
+            StartCoroutine(changingLight());
+            
             
             
 
+        }
+        private IEnumerator changingLight()
+        {
+            animator.SetTrigger("Die");
+            temporalLight.GetComponent<LightController>().onLight();
+            yield return new WaitForSeconds(3f);
+            temporalLight.GetComponent<LightController>().offLight();
+            Destroy(this.gameObject);
         }
     }
 
